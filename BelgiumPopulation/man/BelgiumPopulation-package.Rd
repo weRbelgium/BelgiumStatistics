@@ -2,9 +2,8 @@
 % Please edit documentation in R/pkg.R
 \docType{package}
 \name{BelgiumPopulation-package}
+\alias{BelgiumPopulation}
 \alias{BelgiumPopulation-package}
-\alias{ETLUtils}
-\alias{ETLUtils-package}
 \title{Belgium population statistics available as open data}
 \description{
 More information: http://statbel.fgov.be/nl/statistieken/opendata/home
