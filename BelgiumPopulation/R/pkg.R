@@ -3,7 +3,7 @@
 #' More information: http://statbel.fgov.be/nl/statistieken/opendata/home
 #'
 #' @name BelgiumPopulation-package 
-#' @aliases ETLUtils ETLUtils-package
+#' @aliases BelgiumPopulation BelgiumPopulation-package
 #' @docType package 
 #' @examples
 #' data(tf_births)
