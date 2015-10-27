@@ -16,7 +16,7 @@ The data of StatisticsBelgium covers the topics 'Population', 'Work/Fiscal infor
 ![Census](img/census2_tcm325-272387.png)
 ![Census](img/Tools2_tcm325-272591.png)
 
-The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package.
+The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. The package size is approximately 100Mb.
 
 
 ## Installation
