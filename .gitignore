@@ -1,3 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
+dev/*.R
+dev/*.RData
+
