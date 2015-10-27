@@ -54,7 +54,7 @@ data(TF_SOC_POP_STRUCT_2019)
 ```
 
 ### Werk
-There is 1 dataset available regarding fiscal revenues. 
+There is 1 dataset available regarding fiscal revenues from 2005 up to 2015. 
 More information: http://statbel.fgov.be/nl/statistieken/cijfers/arbeid_leven/fisc/index.jsp
 Detailed information about the content of the data can also be found in the **inst/docs/werk** folder of the package.
 ```
