@@ -30,6 +30,8 @@ install.packages('devtools')
 devtools::install_github("jwijffels/StatisticsBelgium", subdir = "BelgiumStatistics")
 ```
 
+![beplot](img/beplot.PNG)
+
 
 ## Documentation of the data sources
 The following shows how the data can be accessed and points to documentation of the different datasets. There are 5 main data groups.
