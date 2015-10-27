@@ -4,16 +4,17 @@ This R package allows R users to easily work with the data made available by the
 
 It packages the data available at http://statbel.fgov.be/nl/statistieken/opendata/home
 
-The data is made available under the 'Licentie open data' which is compatible with the Creative Commons Attribution 2.0 license https://creativecommons.org/licenses/by/2.0
+The data is made available under the **'Licentie open data'** which is compatible with the Creative Commons Attribution 2.0 license https://creativecommons.org/licenses/by/2.0
 
 
 ## Data
-The data of StatisticsBelgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster' and the 'Census of 2011'
+The data of StatisticsBelgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster', the 'Census of 2011' and 'Tools'
 
 ![Bevolking](img/1_tcm325-268333.png)
 ![Werk](img/8_nl_g_tcm325-268329.png)
 ![Leefmilieu](img/2_tcm325-268346.png)
 ![Census](img/census2_tcm325-272387.png)
+![Census](img/Tools2_tcm325-272591.png)
 
 The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package.
 
