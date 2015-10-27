@@ -1,0 +1,38 @@
+<!--
+%\VignetteEngine{knitr::docco_linear}
+%\VignetteIndexEntry{An Introduction to the BelgiumStatistics package}
+-->
+
+An Introduction to **BelgiumStatistics** package
+=======================================
+
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(out.extra='style="display:block; margin: auto"', fig.align="center")
+```
+
+
+Introduction
+------------
+
+
+The  **corrplot** package is a graphical display of a correlation matrix, confidence interval. 
+It also contains some algorithms to do matrix reordering.  In addition, corrplot is good at details, including choosing color, text labels, color labels, layout, etc.
+
+
+
+Visualization Methods
+----------------------------
+There are seven visualization methods (parameter `method`) in **corrplot** package, named `"circle"`, `"square"`, `"ellipse"`, `"number"`, `"shade"`, `"color"`, `"pie"`. 
+```{r methods}
+library(corrplot)
+M <- cor(mtcars)
+corrplot(M, method="circle")
+corrplot(M, method="square")
+corrplot(M, method="ellipse")
+corrplot(M, method="number")
+corrplot(M, method="shade")
+corrplot(M, method="color")
+corrplot(M, method="pie")
+```
