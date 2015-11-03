@@ -66,3 +66,29 @@ leaflet(myenrichedmap) %>%
   addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 0.85, color = ~pal(Females)) %>%
   addPopups(lng = 4.366354, lat = 50.86619, popup="BNOSAC offices<br/>www.bnosac.be")
 ```
+
+
+Other datasets
+----------------------------
+Next to the administrative boundaries which were created in PostGIS, the shapefiles provided by Geofabrik in the file http://download.geofabrik.de/europe/belgium-latest.shp.zip are also made available in the package.
+This includes data of landuse, natural, places, points, railways, roads and waterways.
+
+```{r other geospatial data}
+data(BE_OSM_PLACES)
+data(BE_OSM_POINTS)
+data(BE_OSM_RAILWAYS)
+data(BE_OSM_ROADS)
+data(BE_OSM_WATERWAYS)
+data(BE_OSM_LANDUSE)
+
+str(as.data.frame(BE_OSM_ROADS))
+str(as.data.frame(BE_OSM_LANDUSE))
+
+## Plot
+plot(BE_OSM_RAILWAYS)
+plot(BE_OSM_WATERWAYS)
+
+plot(subset(BE_OSM_ROADS, type %in% c("motorway", "primary")))
+```
+
+
