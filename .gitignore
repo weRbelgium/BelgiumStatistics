@@ -3,6 +3,7 @@
 .RData
 dev/*.R
 dev/*.RData
+dev/*.sh
 dev/maps
 dev/applications
 BelgiumMaps/BelgiumMapsAtlas
