@@ -1,0 +1,21 @@
+Package: BelgiumMapsOpenStreetMap
+Type: Package
+Title: Maps of Belgium extracted from OpenStreetMap
+Description: Maps of Belgium extracted from OpenStreetMap
+Maintainer: Jan Wijffels <jwijffels@bnosac.be>
+Author: See file AUTHORS
+License: Open Database License (ODbL), See file LICENSE
+Copyright: BNOSAC <info@bnosac.be>, Geofabrik GmbH and OpenStreetMap Contributors
+Version: 1.0
+URL: http://download.geofabrik.de/europe/belgium.html
+Date: 2015-11-03
+Depends:
+  R (>= 2.10)
+Imports:
+  stringi
+Suggests:
+  sp,
+  data.table,
+  leaflet,
+  BelgiumStatistics
+
