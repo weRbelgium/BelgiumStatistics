@@ -20,7 +20,7 @@ The R packages are currently only available through github. There are no plans t
 To install the latest version from github:
 ```
 install.packages('devtools')
-devtools::install_github("jwijffels/StatisticsBelgium/BelgiumMaps", subdir = "BelgiumMapsOpenStreetMap")
+devtools::install_github("jwijffels/StatisticsBelgium", subdir = "BelgiumMaps/BelgiumMapsOpenStreetMap")
 ```
 
 ## Documentation of the BelgiumMapsOpenStreetMap package
