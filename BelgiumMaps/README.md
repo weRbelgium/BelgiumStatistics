@@ -8,9 +8,9 @@ There are 3 packages available in this part of the repository
 
 1. **BelgiumMapsOpenStreetMap**: released under the Open Database License 1.0. http://opendatacommons.org/licenses/odbl/1-0/. You may use the data for any purpose, but you have to acknowledge OpenStreetMap as the data source.
 
-2. **BelgiumMapsGADM**: maps only available for academic use and other non-commercial use
+2. **BelgiumMapsGADM**: maps only available for academic use and other non-commercial use (Under construction)
 
-3. **BelgiumMapsAtlas**: maps only available for academic use and other non-commercial use
+3. **BelgiumMapsAtlas**: maps only available for academic use and other non-commercial use (Under construction)
 
 ## Installation
 
@@ -22,13 +22,16 @@ To install the latest version from github:
 install.packages('devtools')
 devtools::install_github("jwijffels/StatisticsBelgium", subdir = "BelgiumMaps/BelgiumMapsOpenStreetMap")
 ```
+The package size of BelgiumMapsOpenStreetMap is approximately 140Mb so this takes some time to install.
 
 ## Documentation of the BelgiumMapsOpenStreetMap package
 
 This package contains data extracted from http://download.geofabrik.de/europe/belgium.html on 2015/11/03 with OpenStreetMap data up to 2015-11-02T22:22:02Z.
 
+### Administrative boundaries
+
 The belgium-latest.osm.pbf file was imported with osm2pgsql in PostGIS and converted to a shapefile with pgsql2shp to obtain shape files of polygons of administrative boundaries of administrative levels 2, 4, 6, 7, 8, 9. More information about administrative levels in OpenStreetMap: http://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative.
-These administrative boundaries are made availabel in the BE_OSM_ADMIN dataset inside the package.
+These administrative boundaries are made available in the BE_OSM_ADMIN dataset inside the package.
 
 ```
 library(BelgiumMapsOpenStreetMap)
@@ -67,4 +70,26 @@ leaflet(myenrichedmap) %>%
 ![OSM example](img/osm_example.png)
 
 
+### Other data
+
+Next to the administrative boundaries which were created in PostGIS, the shapefiles provided by Geofabrik in the file http://download.geofabrik.de/europe/belgium-latest.shp.zip are also made available in the package.
+This includes data of landuse, natural, places, points, railways, roads and waterways.
+
+```
+library(BelgiumMapsOpenStreetMap)
+library(sp)
+data(BE_OSM_PLACES)
+data(BE_OSM_POINTS)
+data(BE_OSM_RAILWAYS)
+data(BE_OSM_ROADS)
+data(BE_OSM_WATERWAYS)
+plot(BE_OSM_RAILWAYS)
+plot(BE_OSM_WATERWAYS)
+str(as.data.frame(BE_OSM_LANDUSE))
+plot(subset(BE_OSM_ROADS, type %in% c("motorway", "primary")))
+str(as.data.frame(BE_OSM_ROADS))
+plot(subset(BE_OSM_LANDUSE, type == "industrial"))
+```
+
+More information about the content of these files can be found in the **inst/docs** folder
 
