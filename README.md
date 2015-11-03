@@ -1,4 +1,4 @@
-# StatisticsBelgium
+# StatisticsBelgium: Statistics and Maps about Belgium
 
 This R package allows R users to easily work with the data made available by the 'Algemene Directie Statistiek - Statistics Belgium', data which is part of the Open Data initiative of the Belgium government (initiative started on 22/10/2015).
 
@@ -8,7 +8,7 @@ The data is made available under the **'Licentie open data'** which is compatibl
 
 
 ## Data
-The data of StatisticsBelgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster', the 'Census of 2011' and 'Tools'
+The data of Statistics Belgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster', the 'Census of 2011' and 'Tools'
 
 ![Bevolking](img/1_tcm325-268333.png)
 ![Werk](img/8_nl_g_tcm325-268329.png)
