@@ -1,10 +1,10 @@
-# StatisticsBelgium: Statistics and Maps about Belgium
+# Statistics and Maps about Belgium
 
 This R package allows R users to easily work with the data made available by the 'Algemene Directie Statistiek - Statistics Belgium', data which is part of the Open Data initiative of the Belgium government (initiative started on 22/10/2015).
 
-It packages the data available at http://statbel.fgov.be/nl/statistieken/opendata/home
+It packages the **data** available at http://statbel.fgov.be/nl/statistieken/opendata/home. This data is made available under the **'Licentie open data'** which is compatible with the Creative Commons Attribution 2.0 license https://creativecommons.org/licenses/by/2.0
 
-The data is made available under the **'Licentie open data'** which is compatible with the Creative Commons Attribution 2.0 license https://creativecommons.org/licenses/by/2.0
+Next to the data, it provides also a list of **maps** which can be used if you are interested in geographical analysis of Belgium data. More information about these maps: [BelgiumMaps/README.md](BelgiumMaps/README.md)
 
 
 ## Data
