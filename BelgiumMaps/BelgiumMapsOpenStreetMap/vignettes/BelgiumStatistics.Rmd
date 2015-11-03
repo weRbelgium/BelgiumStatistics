@@ -89,6 +89,10 @@ plot(BE_OSM_RAILWAYS)
 plot(BE_OSM_WATERWAYS)
 
 plot(subset(BE_OSM_ROADS, type %in% c("motorway", "primary")))
+plot(subset(BE_OSM_LANDUSE, type == "industrial"))
+lines(subset(BE_OSM_WATERWAYS, type %in% c("canal")), col = "blue")
+plot(subset(BE_OSM_LANDUSE, type == "farmland"), col = "lightgreen")
+
 ```
 
 

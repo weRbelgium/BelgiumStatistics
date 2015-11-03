@@ -89,7 +89,10 @@ str(as.data.frame(BE_OSM_LANDUSE))
 plot(subset(BE_OSM_ROADS, type %in% c("motorway", "primary")))
 str(as.data.frame(BE_OSM_ROADS))
 plot(subset(BE_OSM_LANDUSE, type == "industrial"))
+lines(subset(BE_OSM_WATERWAYS, type %in% c("canal")), col = "blue")
+plot(subset(BE_OSM_LANDUSE, type == "farmland"))
 ```
+![OSM example](img/osm_industrial.png)
 
 More information about the content of these files can be found in the **inst/docs** folder
 
