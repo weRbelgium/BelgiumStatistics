@@ -14,7 +14,7 @@ There are 3 packages available in this part of the repository
 
 ## Installation
 
-The R package is currently only available through github. There are no plans to put these packages on CRAN as the data are too big for the CRAN policy and the text is available in UTF-8 instead of ASCII (which is the preferred encoding at CRAN).
+The R packages are currently only available through github. There are no plans to put these packages on CRAN as the data are too big for the CRAN policy and the text of the spatial data is available in UTF-8 instead of ASCII (which is the preferred encoding at CRAN).
 
 
 To install the latest version from github:
@@ -35,3 +35,31 @@ library(sp)
 data(BE_OSM_ADMIN) 
 plot(BE_OSM_ADMIN)
 ```
+
+The BE_OSM_ADMIN spatial data contains NIS codes which where extracted from the ref:INS tag of the OpenStreetmap polygon. These can be used to link with the BelgiumStatistics NIS code identifier which is present in the data of the BelgiumStatistics package. Example shown below.
+
+```
+library(BelgiumStatistics)
+library(BelgiumMapsOpenStreetMap)
+library(data.table)
+library(leaflet)
+
+data(TF_SOC_POP_STRUCT_2015, package = "BelgiumMapsOpenStreetMap")
+data(TF_SOC_POP_STRUCT_2015, package = "BelgiumStatistics")
+
+x <- as.data.table(TF_SOC_POP_STRUCT_2015)
+x <- x[, list(MS_POPULATION = sum(MS_POPULATION),
+              Females = 100 * sum(MS_POPULATION[CD_SEX == "F"]) / sum(MS_POPULATION)),
+       by = list(CD_MUNTY_REFNIS, TX_MUNTY_DESCR_NL, TX_MUNTY_DESCR_FR)]
+
+mymap <- subset(BE_OSM_ADMIN, !is.na(TAG.ref.INS))
+myenrichedmap <- merge(mymap, x, by.x = "TAG.ref.INS", by.y = "CD_MUNTY_REFNIS", all.x=TRUE, all.y=FALSE)
+myenrichedmap <- subset(myenrichedmap, !is.na(Females))
+pal <- colorNumeric(palette = "Blues", domain = myenrichedmap$Females)
+leaflet(myenrichedmap) %>%
+  addTiles() %>%
+  addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 0.85, color = ~pal(Females)) %>%
+  addPopups(lng = 4.366354, lat = 50.86619, popup="BNOSAC offices<br/>www.bnosac.be")
+```
+![OSM example](img/osm_example.png)
+
