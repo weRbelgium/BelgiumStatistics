@@ -27,13 +27,15 @@ devtools::install_github("jwijffels/StatisticsBelgium/BelgiumMaps", subdir = "Be
 
 This package contains data extracted from http://download.geofabrik.de/europe/belgium.html on 2015/11/03 with OpenStreetMap data up to 2015-11-02T22:22:02Z.
 
-The belgium-latest.osm.pbf file was imported with osm2pgsql in PostGIS and converted to a shapefile with pgsql2shp to obtain shape files of polygons of administrative boundaries of administrative levels 2, 4, 6, 7, 8, 9. More information about administrative levels in OpenStreetMap: http://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative
+The belgium-latest.osm.pbf file was imported with osm2pgsql in PostGIS and converted to a shapefile with pgsql2shp to obtain shape files of polygons of administrative boundaries of administrative levels 2, 4, 6, 7, 8, 9. More information about administrative levels in OpenStreetMap: http://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative.
+These administrative boundaries are made availabel in the BE_OSM_ADMIN dataset inside the package.
 
 ```
 library(BelgiumMapsOpenStreetMap)
 library(sp)
 data(BE_OSM_ADMIN) 
 plot(BE_OSM_ADMIN)
+str(as.data.frame(BE_OSM_ADMIN))
 ```
 
 The BE_OSM_ADMIN spatial data contains NIS codes which where extracted from the ref:INS tag of the OpenStreetmap polygon. These can be used to link with the BelgiumStatistics NIS code identifier which is present in the data of the BelgiumStatistics package. Example shown below.
