@@ -61,5 +61,6 @@ leaflet(myenrichedmap) %>%
   addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 0.85, color = ~pal(Females)) %>%
   addPopups(lng = 4.366354, lat = 50.86619, popup="BNOSAC offices<br/>www.bnosac.be")
 ```
-![OSM example](img/osm_example.png)
+
+![OSM example](../img/osm_example.png)
 
