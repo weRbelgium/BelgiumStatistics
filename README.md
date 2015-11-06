@@ -10,7 +10,7 @@ Next to the data, 2 packages with geospatial data containing **maps** can be use
 ## Data
 The data of Statistics Belgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster', the 'Census of 2011' and 'Tools'
 
-![Datasets](inst/extdata/img/opendatadataset.png)
+![Datasets](inst/extdata/img/opendatadataset.PNG)
 
 The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. The package size is approximately 100Mb so this takes some time to install.
 
