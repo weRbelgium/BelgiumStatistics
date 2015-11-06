@@ -26,7 +26,7 @@ devtools::install_github("jwijffels/BelgiumMaps.Admin", build_vignettes = TRUE)
 devtools::install_github("jwijffels/StatisticsBelgium", build_vignettes = TRUE)
 
 ```
-The package StatisticsBelgium is approximately 100Mb in size so this takes some time to install (+/- 15min).
+The package StatisticsBelgium is approximately 100Mb in size so **this takes some time to install (+/- 15min)**.
 
 ![beplot](inst/extdata/img/beplot.PNG)
 
@@ -181,7 +181,33 @@ data(TU_ISCO_2008)
 
 The BelgiumStatistics package integrates nicely with the BelgiumMaps.Admin package which can be found here: https://github.com/jwijffels/BelgiumMaps.Admin
 That package contains administrative boundaries which were extracted from OpenStreetMap. These maps can be linked based on the INS code which is available in the data of StatisticsBelgium as well as the maps from package BelgiumMaps.Admin.
-Example code is shown below of a basic thematic plot of the population and the kadaster.
+
+This can be as simple as:
+
+```
+library(BelgiumStatistics)
+library(BelgiumMaps.Admin)
+library(data.table)
+library(sp)
+library(leaflet)
+
+data(BE_OSM_ADMIN, package = "BelgiumMaps.Admin")
+data(TF_SOC_POP_STRUCT_2015, package = "BelgiumStatistics")
+
+x <- as.data.table(TF_SOC_POP_STRUCT_2015)
+x <- x[, list(Females = 100 * sum(MS_POPULATION[CD_SEX == "F"]) / sum(MS_POPULATION)),
+       by = list(CD_MUNTY_REFNIS, TX_MUNTY_DESCR_NL, TX_MUNTY_DESCR_FR)]
+
+mymap <- merge(BE_OSM_ADMIN, x, by.x = "tag.ref.ins", by.y = "CD_MUNTY_REFNIS", all.x=FALSE, all.y=FALSE)
+pal <- colorNumeric(palette = "Blues", domain = mymap$Females)
+leaflet(mymap) %>%
+  addTiles() %>%
+  addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 0.85, color = ~pal(Females)) %>%
+  addPopups(lng = 4.366354, lat = 50.86619, popup="BNOSAC offices<br/>www.bnosac.be")
+```
+
+Or the data can also easily be used to make thematic plots.
+The example code below shows a basic thematic plot of the population and the kadaster.
 
 ![beplot](inst/extdata/img/be_tmap_population_kadaster.png)
 
