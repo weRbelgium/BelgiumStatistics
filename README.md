@@ -4,17 +4,13 @@ This R package allows R users to easily work with the data made available by the
 
 It packages the **data** available at http://statbel.fgov.be/nl/statistieken/opendata/home. This data is made available under the **'Licentie open data'** which is compatible with the Creative Commons Attribution 2.0 license https://creativecommons.org/licenses/by/2.0
 
-Next to the data, it provides also a list of **maps** which can be used if you are interested in geographical analysis of Belgium data. More information about these maps: [BelgiumMaps/README.md](BelgiumMaps/README.md)
+Next to the data, 2 packages with geospatial data containing **maps** can be used alongside it if you are interested in geographical analysis of Belgium data. Namely package BelgiumMaps.Admin (https://github.com/jwijffels/BelgiumMaps.Admin) and package BelgiumMaps.OpenStreetMap (https://github.com/jwijffels/BelgiumMaps.OpenStreetMap)
 
 
 ## Data
 The data of Statistics Belgium covers the topics 'Population', 'Work/Fiscal information', 'Kadaster', the 'Census of 2011' and 'Tools'
 
-![Bevolking](img/1_tcm325-268333.png)
-![Werk](img/8_nl_g_tcm325-268329.png)
-![Leefmilieu](img/2_tcm325-268346.png)
-![Census](img/census2_tcm325-272387.png)
-![Census](img/Tools2_tcm325-272591.png)
+![Datasets](inst/extdata/img/opendatadataset.png)
 
 The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. The package size is approximately 100Mb so this takes some time to install.
 
@@ -26,11 +22,12 @@ The R package is currently only available through github. There are no plans to 
 
 To install the latest version from github:
 ```
-install.packages('devtools')
-devtools::install_github("jwijffels/StatisticsBelgium", subdir = "BelgiumStatistics")
+devtools::install_github("jwijffels/BelgiumMaps.Admin", build_vignettes = TRUE)
+devtools::install_github("jwijffels/StatisticsBelgium", build_vignettes = TRUE)
+
 ```
 
-![beplot](img/beplot.PNG)
+![beplot](inst/extdata/img/beplot.PNG)
 
 
 ## Documentation of the data sources
@@ -175,4 +172,74 @@ Detailed information about the content of the data can also be found in the **in
 library(BelgiumStatistics)
 data(TU_ISCO_2008)
 ```
+
+
+## Visualisation
+
+### Package BelgiumMaps.Admin
+
+The BelgiumStatistics package integrates nicely with the BelgiumMaps.Admin package which can be found here: https://github.com/jwijffels/BelgiumMaps.Admin
+That package contains administrative boundaries which were extracted from OpenStreetMap. These maps can be linked based on the INS code which is available in the data of StatisticsBelgium as well as the maps from package BelgiumMaps.Admin.
+Example code is shown below of a basic thematic plot of the population and the kadaster.
+
+![beplot](inst/extdata/img/be_tmap_population_kadaster.png)
+
+```
+require(BelgiumStatistics)
+require(BelgiumMaps.Admin)
+require(data.table)
+require(sp)
+require(tmap) ## using the package from https://github.com/mtennekes/tmap
+require(Hmisc)
+data(TF_SOC_POP_STRUCT_2015, package = "BelgiumStatistics")
+data(TF_EAE_LAND_OCCUPTN_2015, package = "BelgiumStatistics")
+data(BE_OSM_ADMIN, package = "BelgiumMaps.Admin")
+
+## Get some statistics about the municipalities
+population <- as.data.table(TF_SOC_POP_STRUCT_2015)
+population <- population[, list(POPULATION = sum(MS_POPULATION),
+                                POPULATION.ADULT = sum(MS_POPULATION[CD_AGE >= 18])), 
+                by = list(CD_MUNTY_REFNIS, TX_MUNTY_DESCR_NL, TX_ADM_DSTR_DESCR_NL, TX_PROV_DESCR_NL, TX_RGN_DESCR_NL)]
+population$TX_PROV_DESCR_NL <- ifelse(is.na(population$TX_PROV_DESCR_NL), population$TX_RGN_DESCR_NL, population$TX_PROV_DESCR_NL)
+
+surface <- as.data.table(TF_EAE_LAND_OCCUPTN_2015)
+surface <- surface[, list(SURFACE_HECTARE = sum(MS_TOT_SUR),
+                          KADASTRAAL_INKOMEN = sum(MS_TOT_CDSTRL_INC)), by = list(CD_MUNTY_REFNIS)]
+## Join population stats with kadaster data  
+x <- merge(population, surface, by = "CD_MUNTY_REFNIS")
+
+## Join the maps with the data based on the INS code
+mymap <- merge(BE_OSM_ADMIN, x, by.x = "tag.ref.ins", by.y = "CD_MUNTY_REFNIS", all.x=FALSE, all.y=FALSE)
+mymap$SURFACE_SQUARE_KM <- mymap$SURFACE_HECTARE / 100
+mymap$POPULATION.DENSITY <- mymap$POPULATION / mymap$SURFACE_SQUARE_KM
+mymap$KADASTRAAL.INKOMEN.PERADULTPERSON <- mymap$KADASTRAAL_INKOMEN / mymap$POPULATION.ADULT
+mymap$POPULATION.DENSITY.GRP <- cut2(mymap$POPULATION.DENSITY, g = 10)
+mymap$KADASTRAAL.INKOMEN.PERADULTPERSON.GRP <- cut2(mymap$KADASTRAAL.INKOMEN.PERADULTPERSON, g = 10)
+
+## Take gemeenten + provincies
+gemeenten <- subset(mymap, !is.na(POPULATION) & admin.level %in% c("8"))
+provincies <- subset(BE_OSM_ADMIN, admin.level == "6")
+
+## Thematic chloropethr maps
+tm_shape(gemeenten) +
+  tm_fill(col=c("POPULATION.DENSITY.GRP", "KADASTRAAL.INKOMEN.PERADULTPERSON.GRP"), 
+          title=c("Population (per km2)", "Cadastral Income (per adult person)"), palette = "YlOrRd") +
+  tm_borders("black", alpha = .5) + 
+  tm_shape(provincies, lwd = 2) + tm_borders("grey25", lwd = 4) +
+  tm_compass(position = c("right", "bottom")) 
+
+tm_shape(gemeenten) +
+  tm_fill(col="KADASTRAAL.INKOMEN.PERADULTPERSON.GRP", title="Cadastral Income (per adult person)", palette = "YlOrRd") +
+  tm_borders("black", alpha=.5) + 
+  tm_facets("TX_PROV_DESCR_NL", free.coords=TRUE) +
+  tm_format_Europe_wide(inner.margins = c(0, 0.3, 0, 0))
+```
+
+![beplot](inst/extdata/img/be_tmap_kadaster_byprovince.png)
+
+
+### Package BelgiumMaps.OpenStreetMap
+
+This package contains geospatial data of landuse, natural, places, points, railways, roads and waterways, extracted from OpenStreetMap. https://github.com/jwijffels/BelgiumMaps.OpenStreetMap
+The data can be used to extend the plotting.
 

@@ -1,0 +1,23 @@
+Package: BelgiumStatistics
+Type: Package
+Title: Belgium 'Population', 'Work/Fiscal information', 'Kadaster' and the 'Census of 2011' data
+Description: Belgium 'Population', 'Work/Fiscal information', 'Kadaster' and the 'Census of 2011' data
+Maintainer: Jan Wijffels <jwijffels@bnosac.be>
+Author: see file AUTHORS
+License: see file LICENSE
+Copyright: BNOSAC <info@bnosac.be>
+Version: 1.0
+URL: www.statbel.fgov.be/nl/statistieken/opendata
+Date: 2015-10-27
+VignetteBuilder: knitr
+Depends:
+  R (>= 2.10)
+Imports:
+  data.table (>= 1.9.6)
+Suggests:
+  BelgiumMaps.Admin,
+  leaflet,
+  knitr,
+  sp
+  
+
