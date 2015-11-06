@@ -12,7 +12,7 @@ The data of Statistics Belgium covers the topics 'Population', 'Work/Fiscal info
 
 ![Datasets](inst/extdata/img/opendatadataset.PNG)
 
-The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. The package size is approximately 100Mb so this takes some time to install.
+The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. 
 
 
 ## Installation
@@ -26,6 +26,7 @@ devtools::install_github("jwijffels/BelgiumMaps.Admin", build_vignettes = TRUE)
 devtools::install_github("jwijffels/StatisticsBelgium", build_vignettes = TRUE)
 
 ```
+The package StatisticsBelgium is approximately 100Mb in size so this takes some time to install (+/- 15min).
 
 ![beplot](inst/extdata/img/beplot.PNG)
 
