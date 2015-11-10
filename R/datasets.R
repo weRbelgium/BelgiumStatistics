@@ -94,15 +94,15 @@ NULL
 #' }
 NULL
 
-#' @name TF_SOC_POP_STRUCT_2019
-#' @title TF_SOC_POP_STRUCT_2019
-#' @description bevolking: TF_SOC_POP_STRUCT_2019. More information about this data can be found in the inst/docs folder and at \url{http://statbel.fgov.be/nl/statistieken/opendata/datasets/bevolking}
+#' @name TF_SOC_POP_STRUCT_2009
+#' @title TF_SOC_POP_STRUCT_2009
+#' @description bevolking: TF_SOC_POP_STRUCT_2009. More information about this data can be found in the inst/docs folder and at \url{http://statbel.fgov.be/nl/statistieken/opendata/datasets/bevolking}
 #' @docType data
 #' @references \url{http://statbel.fgov.be/nl/statistieken/opendata/home}, \url{http://statbel.fgov.be/nl/statistieken/opendata/datasets/bevolking}
 #' @examples
 #' \dontrun{
-#' data(TF_SOC_POP_STRUCT_2019)
-#' str(TF_SOC_POP_STRUCT_2019)
+#' data(TF_SOC_POP_STRUCT_2009)
+#' str(TF_SOC_POP_STRUCT_2009)
 #' }
 NULL
 
