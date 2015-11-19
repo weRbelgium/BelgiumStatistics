@@ -12,7 +12,7 @@ The data of Statistics Belgium covers the topics 'Population', 'Work/Fiscal info
 
 ![Datasets](inst/extdata/img/opendatadataset.PNG)
 
-The data are collected on 27/10/2015 from the website of http://statbel.fgov.be/nl/statistieken/opendata/home and packaged as an R package. 
+The last time the data were retrieved from the website of http://statbel.fgov.be/nl/statistieken/opendata/home was on **19/11/2015**. These data are packaged in this R package. 
 
 
 ## Installation
@@ -52,7 +52,7 @@ data(TF_SOC_POP_STRUCT_2009)
 ```
 
 ### Werk
-There is 1 dataset available regarding fiscal revenues from 2005 up to 2015. 
+There is 1 dataset available regarding fiscal revenues from 2005 up to 2013. 
 More information: http://statbel.fgov.be/nl/statistieken/cijfers/arbeid_leven/fisc/index.jsp
 Detailed information about the content of the data can also be found in the **inst/docs/werk** folder of the package.
 ```
