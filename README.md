@@ -19,12 +19,15 @@ The last time the data were retrieved from the website of http://statbel.fgov.be
 
 The R package is currently only available through github. There are no plans to put these packages on CRAN as the data are too big for the CRAN policy and the text is available in UTF-8 instead of ASCII (which is the preferred encoding at CRAN).
 
+The package is available at datatailor.be
+```
+install.packages("BelgiumStatistics", repos = "http://www.datatailor.be/rcube", type = "source")
+```
 
 To install the latest version from github:
 ```
 devtools::install_github("jwijffels/BelgiumMaps.Admin", build_vignettes = TRUE)
 devtools::install_github("jwijffels/StatisticsBelgium", build_vignettes = TRUE)
-
 ```
 The package StatisticsBelgium is approximately 100Mb in size so **this takes some time to install (+/- 15min)**.
 
